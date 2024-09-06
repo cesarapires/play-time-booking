@@ -1,0 +1,9 @@
+node_modules
+.vscode
+.husky
+.next
+public
+coverage
+tailwind.config.ts
+*.woff
+*.ico
