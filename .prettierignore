@@ -1,0 +1,6 @@
+dist
+coverage
+.next
+.husky
+node_modules
+package.json
