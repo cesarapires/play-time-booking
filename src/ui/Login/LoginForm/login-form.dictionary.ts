@@ -1,0 +1,5 @@
+export const SIGN_IN_BUTTON_LABEL = 'Sign in'
+export const FIELD_EMAIL_LABEL = 'Email address'
+export const FIELD_PASSWORD_LABEL = 'Password'
+export const REMEMBER_ME_CHECKBOX_LABEL = 'Remember me'
+export const FORGOT_PASSWORD_TEXT_LINK = 'Forgot password?'
