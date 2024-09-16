@@ -22,7 +22,11 @@ import {
 import { LOGIN_FIELD, PASSWORD_FIELD } from './login-form.consts'
 import { Authentication } from '@/domain/usecases/authentication'
 
-export default function LoginForm(authentication: Authentication) {
+interface LoginFormProps {
+  authentication: Authentication;
+}
+
+export default function LoginForm({authentication}: LoginFormProps) {
   const { onSubmit } = useLoginForm(authentication)
 
   return (
