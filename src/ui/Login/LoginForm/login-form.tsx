@@ -40,11 +40,7 @@ export default function LoginForm({authentication}: LoginFormProps) {
         <Input type={PASSWORD_FIELD} name={PASSWORD_FIELD} />
       </FormControl>
       <Stack spacing={10}>
-        <Stack
-          direction={{ base: 'column', sm: 'row' }}
-          align={'start'}
-          justify={'space-between'}
-        >
+        <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
           <Checkbox>{REMEMBER_ME_CHECKBOX_LABEL}</Checkbox>
           <Text color={'blue.400'}>{FORGOT_PASSWORD_TEXT_LINK}</Text>
         </Stack>
