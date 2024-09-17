@@ -1,0 +1,7 @@
+export const SIGN_UP_BUTTON_LABEL = 'Sign up'
+export const FIELD_EMAIL_LABEL = 'Email address'
+export const FIELD_DOCUMENT_LABEL = 'CNPJ/CPF'
+export const FIELD_NAME_LABEL = 'Name'
+export const FIELD_PASSWORD_LABEL = 'Password'
+export const ALREADY_USER_LINK = 'Sign in'
+export const ALREADY_USER_TEXT = 'Already a user?'
