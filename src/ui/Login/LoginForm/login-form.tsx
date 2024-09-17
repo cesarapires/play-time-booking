@@ -10,9 +10,12 @@ import {
   Stack,
   Button,
   Text,
+  Link,
 } from '@chakra-ui/react'
 import { useLoginForm } from '@/ui/Login/LoginForm/login-form.hooks'
 import {
+  DONT_HAVE_AN_USER_LINK,
+  DONT_HAVE_AN_USER_TEXT,
   FIELD_EMAIL_LABEL,
   FIELD_PASSWORD_LABEL,
   FORGOT_PASSWORD_TEXT_LINK,
@@ -47,6 +50,11 @@ export default function LoginForm({authentication}: LoginFormProps) {
         <Button type='submit' bg={'blue.400'} color={'white'} _hover={{ bg: 'blue.500' }}>
           {SIGN_IN_BUTTON_LABEL}
         </Button>
+        <Stack>
+          <Text align={'center'}>
+            {DONT_HAVE_AN_USER_TEXT} <Link href='signup' color={'blue.400'}>{DONT_HAVE_AN_USER_LINK}</Link>
+          </Text>
+        </Stack>
       </Stack>
     </form>
   )
