@@ -8,5 +8,5 @@ export type RegisterParams = {
 }
 
 export interface Register {
-  register(params: RegisterParams): Promise<AccountModel>;
+  perform(params: RegisterParams): Promise<AccountModel>;
 }
