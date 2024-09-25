@@ -1,33 +1,52 @@
 import { Register } from '@/domain/usecases/register'
+
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import {
-  EMAIL_FIELD,
-  DOCUMENT_FIELD,
-  NAME_FIELD,
-  PASSWORD_FIELD
-} from '@/ui/Signup/SignupForm/signup-form.consts'
+  SignupFormValidation,
+  SignupFormValidationType,
+} from '@/ui/Signup/SignupForm/signup-form.validation'
+
+import { UseFormReturn } from 'react-hook-form'
+import { useToast } from '@chakra-ui/react'
+import {
+  SIGN_UP_ERROR_TOAST_DESCRIPTION,
+  SIGN_UP_ERROR_TOAST_TITLE,
+} from '@/ui/Signup/SignupForm/signup-form.dictionary'
 
 type UseSignupForm = {
-  onSubmit: (formData: FormData) => void;
+  perform: (formData: SignupFormValidationType) => void;
+  form: UseFormReturn<SignupFormValidationType>;
 };
 
 export const useRegisterForm = (register: Register): UseSignupForm => {
+  const toast = useToast()
 
-  const onSubmit = async (formData: FormData) => {
-    const email = (formData.get(EMAIL_FIELD) as string) || ''
-    const name = (formData.get(NAME_FIELD) as string) || ''
-    const document = (formData.get(DOCUMENT_FIELD) as string) || ''
-    const password = (formData.get(PASSWORD_FIELD) as string) || ''
-
-    alert(`Email: ${email}, Name: ${name}, Documento: ${document}, Password: ${password}`)
-
+  const perform = async (formData: SignupFormValidationType) => {
     try {
-      await register.perform({ email, name, document, password })
-    } catch (error) {
-      console.error(error)
+      await register.perform(formData)
+    } catch (errors) {
+      toast({
+        title: SIGN_UP_ERROR_TOAST_TITLE,
+        description: SIGN_UP_ERROR_TOAST_DESCRIPTION,
+        status: 'error',
+      })
     }
   }
 
+  const form = useForm<SignupFormValidationType>({
+    resolver: zodResolver(SignupFormValidation),
+    defaultValues: {
+      name: '',
+      document: '',
+      email: '',
+      password: '',
+    },
+    mode: 'onBlur',
+  })
+
   return {
-    onSubmit,
+    perform,
+    form,
   }
 }
