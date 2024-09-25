@@ -1,6 +1,6 @@
-'use client';
+'use client'
 
-import React, { InputHTMLAttributes, useState } from 'react';
+import React, { InputHTMLAttributes, useState } from 'react'
 
 import {
   FormControl,
@@ -10,9 +10,9 @@ import {
   InputGroup,
   InputRightElement,
   Button,
-} from '@chakra-ui/react';
-import { UseFormRegisterReturn } from 'react-hook-form';
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+} from '@chakra-ui/react'
+import { UseFormRegisterReturn } from 'react-hook-form'
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
 interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -24,12 +24,12 @@ interface FieldProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Password: React.FC<FieldProps> = (fields) => {
-  const { label, error, name, isRequired, register } = fields;
+  const { label, error, name, isRequired, register } = fields
 
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
-  const isError = error !== undefined;
-  const margin = error ? '0px' : '24px';
+  const isError = error !== undefined
+  const margin = error ? '0px' : '24px'
 
   return (
     <FormControl isInvalid={isError} isRequired={isRequired}>
@@ -53,7 +53,7 @@ const Password: React.FC<FieldProps> = (fields) => {
       </InputGroup>
       {error && <FormErrorMessage>{error}</FormErrorMessage>}
     </FormControl>
-  );
-};
+  )
+}
 
-export default Password;
+export default Password
