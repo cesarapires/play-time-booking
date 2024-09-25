@@ -1,20 +1,9 @@
 'use client'
 
-import React, { useState } from 'react'
+import React from 'react'
 
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
-  Button,
-  Text,
-  InputGroup,
-  InputRightElement,
-  Link,
-} from '@chakra-ui/react'
+import { Stack, Button, Text, Link } from '@chakra-ui/react'
 
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 import { useRegisterForm } from '@/ui/Signup/SignupForm/signup-form.hooks'
 import { Register } from '@/domain/usecases/register'
 import {
@@ -32,48 +21,63 @@ import {
   FIELD_PASSWORD_LABEL,
   SIGN_UP_BUTTON_LABEL,
 } from '@/ui/Signup/SignupForm/signup-form.dictionary'
+import Field from '@/ui/common/components/fields/Field/Field'
+import Password from '@/ui/common/components/fields/Password/Password'
 
 interface SignupFormProps {
   register: Register;
 }
 
 export default function SignupForm({ register }: SignupFormProps) {
-  const [showPassword, setShowPassword] = useState(false)
-  const { onSubmit } = useRegisterForm(register)
+
+  const { perform, form } = useRegisterForm(register)
 
   return (
-    <form action={onSubmit}>
-      <FormControl id={NAME_FIELD} isRequired>
-        <FormLabel>{FIELD_NAME_LABEL}</FormLabel>
-        <Input type="text" name={NAME_FIELD} />
-      </FormControl>
-      <FormControl id={DOCUMENT_FIELD} isRequired>
-        <FormLabel>{FIELD_DOCUMENT_LABEL}</FormLabel>
-        <Input name={DOCUMENT_FIELD} />
-      </FormControl>
-      <FormControl id={EMAIL_FIELD} isRequired>
-        <FormLabel>{FIELD_EMAIL_LABEL}</FormLabel>
-        <Input type="email" name={EMAIL_FIELD} />
-      </FormControl>
-      <FormControl id={PASSWORD_FIELD} isRequired>
-        <FormLabel>{FIELD_PASSWORD_LABEL}</FormLabel>
-        <InputGroup>
-          <Input type={showPassword ? 'text' : 'password'} name={PASSWORD_FIELD} />
-          <InputRightElement h={'full'}>
-            <Button variant={'ghost'} onClick={() => setShowPassword((showPassword) => !showPassword)}>
-              {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-      </FormControl>
+    <form onSubmit={form.handleSubmit(perform)}>
+      <Field
+        label={FIELD_NAME_LABEL}
+        error={form.formState.errors[NAME_FIELD]?.message}
+        register={ form.register(NAME_FIELD) }
+        isRequired
+      />
+
+      <Field
+        label={FIELD_DOCUMENT_LABEL}
+        error={form.formState.errors[DOCUMENT_FIELD]?.message}
+        register={ form.register(DOCUMENT_FIELD) }
+        isCpf
+        isRequired
+      />
+
+      <Field
+        label={FIELD_EMAIL_LABEL}
+        error={form.formState.errors[EMAIL_FIELD]?.message}
+        register={ form.register(EMAIL_FIELD) }
+        isRequired
+      />
+
+      <Password
+        label={FIELD_PASSWORD_LABEL}
+        error={form.formState.errors[PASSWORD_FIELD]?.message}
+        register={ form.register(PASSWORD_FIELD) }
+        isRequired
+      />
+
       <Stack spacing={10}>
         <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'} />
-        <Button type="submit" bg={'blue.400'} color={'white'} _hover={{ bg: 'blue.500' }}>
+        <Button
+          isDisabled={!form.formState.isValid}
+          type='submit'
+          bg={'blue.400'}
+          color={'white'}
+          _hover={{ bg: 'blue.500' }}
+        >
           {SIGN_UP_BUTTON_LABEL}
         </Button>
         <Stack>
           <Text align={'center'}>
-            {ALREADY_USER_TEXT} <Link href='login' color={'blue.400'}>{ALREADY_USER_LINK}</Link>
+            {ALREADY_USER_TEXT}{' '}
+            <Link href='login' color={'blue.400'}>{ALREADY_USER_LINK}</Link>
           </Text>
         </Stack>
       </Stack>
