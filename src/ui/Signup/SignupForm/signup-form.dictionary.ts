@@ -5,3 +5,6 @@ export const FIELD_NAME_LABEL = 'Name'
 export const FIELD_PASSWORD_LABEL = 'Password'
 export const ALREADY_USER_LINK = 'Sign in'
 export const ALREADY_USER_TEXT = 'Already a user?'
+
+export const SIGN_UP_ERROR_TOAST_TITLE = 'Error while performing sign up'
+export const SIGN_UP_ERROR_TOAST_DESCRIPTION = 'Try again!'
