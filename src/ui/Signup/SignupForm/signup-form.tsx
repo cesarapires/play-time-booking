@@ -66,6 +66,7 @@ export default function SignupForm({ register }: SignupFormProps) {
       <Stack spacing={10}>
         <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'} />
         <Button
+          data-testid='submit'
           isDisabled={!form.formState.isValid}
           type='submit'
           bg={'blue.400'}
