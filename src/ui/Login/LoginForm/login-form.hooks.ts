@@ -14,8 +14,6 @@ export const useLoginForm = (authentication: Authentication): UseLoginForm => {
     const email = (formData.get(LOGIN_FIELD) as string) || ''
     const password = (formData.get(PASSWORD_FIELD) as string) || ''
 
-    alert(`Email: ${email}, Password: ${password}`)
-
     try {
       await authentication.auth({ email, password })
     } catch (error) {
