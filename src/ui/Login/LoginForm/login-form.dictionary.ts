@@ -5,3 +5,6 @@ export const REMEMBER_ME_CHECKBOX_LABEL = 'Remember me'
 export const FORGOT_PASSWORD_TEXT_LINK = 'Forgot password?'
 export const DONT_HAVE_AN_USER_LINK = 'Sign up'
 export const DONT_HAVE_AN_USER_TEXT = 'Don\'t have an user?'
+
+export const LOGIN_ERROR_TOAST_TITLE = 'Error while authentication'
+export const LOGIN_ERROR_TOAST_DESCRIPTION = 'Try again!'
