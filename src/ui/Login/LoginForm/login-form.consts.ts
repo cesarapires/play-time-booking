@@ -1,2 +1,2 @@
-export const LOGIN_FIELD = 'login'
+export const LOGIN_FIELD = 'email'
 export const PASSWORD_FIELD = 'password'
