@@ -29,7 +29,7 @@ interface LoginFormProps {
   authentication: Authentication;
 }
 
-export default function LoginForm({authentication}: LoginFormProps) {
+export default function LoginForm({ authentication }: LoginFormProps) {
   const { onSubmit } = useLoginForm(authentication)
 
   return (
@@ -43,16 +43,28 @@ export default function LoginForm({authentication}: LoginFormProps) {
         <Input type={PASSWORD_FIELD} name={PASSWORD_FIELD} />
       </FormControl>
       <Stack spacing={10}>
-        <Stack direction={{ base: 'column', sm: 'row' }} align={'start'} justify={'space-between'}>
+        <Stack
+          direction={{ base: 'column', sm: 'row' }}
+          align={'start'}
+          justify={'space-between'}
+        >
           <Checkbox>{REMEMBER_ME_CHECKBOX_LABEL}</Checkbox>
           <Text color={'blue.400'}>{FORGOT_PASSWORD_TEXT_LINK}</Text>
         </Stack>
-        <Button type='submit' bg={'blue.400'} color={'white'} _hover={{ bg: 'blue.500' }}>
+        <Button
+          type="submit"
+          bg={'blue.400'}
+          color={'white'}
+          _hover={{ bg: 'blue.500' }}
+        >
           {SIGN_IN_BUTTON_LABEL}
         </Button>
         <Stack>
           <Text align={'center'}>
-            {DONT_HAVE_AN_USER_TEXT} <Link href='signup' color={'blue.400'}>{DONT_HAVE_AN_USER_LINK}</Link>
+            {DONT_HAVE_AN_USER_TEXT}{' '}
+            <Link href="signup" color={'blue.400'}>
+              {DONT_HAVE_AN_USER_LINK}
+            </Link>
           </Text>
         </Stack>
       </Stack>
