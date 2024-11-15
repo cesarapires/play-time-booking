@@ -3,9 +3,6 @@
 import React from 'react'
 
 import {
-  FormControl,
-  FormLabel,
-  Input,
   Checkbox,
   Stack,
   Button,
@@ -24,24 +21,32 @@ import {
 } from '@/ui/Login/LoginForm/login-form.dictionary'
 import { LOGIN_FIELD, PASSWORD_FIELD } from './login-form.consts'
 import { Authentication } from '@/domain/usecases/authentication'
+import Field from '@/ui/common/components/fields/Field/Field'
+import Password from '@/ui/common/components/fields/Password/Password'
 
 interface LoginFormProps {
   authentication: Authentication;
 }
 
 export default function LoginForm({ authentication }: LoginFormProps) {
-  const { onSubmit } = useLoginForm(authentication)
+  const { perform, form } = useLoginForm(authentication)
 
   return (
-    <form action={onSubmit}>
-      <FormControl id={LOGIN_FIELD}>
-        <FormLabel>{FIELD_EMAIL_LABEL}</FormLabel>
-        <Input type={LOGIN_FIELD} name={LOGIN_FIELD} />
-      </FormControl>
-      <FormControl id={PASSWORD_FIELD}>
-        <FormLabel>{FIELD_PASSWORD_LABEL}</FormLabel>
-        <Input type={PASSWORD_FIELD} name={PASSWORD_FIELD} />
-      </FormControl>
+    <form onSubmit={form.handleSubmit(perform)}>
+      <Field
+        label={FIELD_EMAIL_LABEL}
+        error={form.formState.errors[LOGIN_FIELD]?.message}
+        register={form.register(LOGIN_FIELD)}
+        isRequired
+      />
+
+      <Password
+        label={FIELD_PASSWORD_LABEL}
+        error={form.formState.errors[PASSWORD_FIELD]?.message}
+        register={form.register(PASSWORD_FIELD)}
+        isRequired
+      />
+
       <Stack spacing={10}>
         <Stack
           direction={{ base: 'column', sm: 'row' }}
@@ -52,6 +57,8 @@ export default function LoginForm({ authentication }: LoginFormProps) {
           <Text color={'blue.400'}>{FORGOT_PASSWORD_TEXT_LINK}</Text>
         </Stack>
         <Button
+          data-testid="submit"
+          isDisabled={!form.formState.isValid}
           type="submit"
           bg={'blue.400'}
           color={'white'}
