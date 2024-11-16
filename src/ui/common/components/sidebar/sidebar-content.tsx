@@ -7,7 +7,7 @@ import {
   BoxProps,
 } from '@chakra-ui/react'
 import { NavItem } from '@/ui/common/components/sidebar/nav-item'
-import { LinkItems } from '@/app/dashboard/link-items'
+import { LinkItems } from '@/ui/common/components/sidebar/link-items'
 
 interface SidebarProps extends BoxProps {
   onClose: () => void;
