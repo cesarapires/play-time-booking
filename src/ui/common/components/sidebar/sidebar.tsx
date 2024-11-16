@@ -9,8 +9,9 @@ import {
 } from '@chakra-ui/react'
 import { MobileNav } from '@/ui/common/components/sidebar/mobile-nav'
 import { SidebarContent } from '@/ui/common/components/sidebar/sidebar-content'
+import { UserProfile } from '@/domain/models/user-profile'
 
-const SidebarWithHeader = ({ children }: { children: React.ReactNode }) => {
+const SidebarWithHeader = ({ children, userProfile }: { children: React.ReactNode, userProfile: UserProfile }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -31,7 +32,7 @@ const SidebarWithHeader = ({ children }: { children: React.ReactNode }) => {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <MobileNav onOpen={onOpen} />
+      <MobileNav onOpen={onOpen} userProfile={userProfile} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
