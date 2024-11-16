@@ -14,7 +14,7 @@ export default function Layout({
 }>) {
   return (
     <Providers>
-      <SidebarWithHeader>{children}</SidebarWithHeader>
+      <SidebarWithHeader userProfile={userProfile}>{children}</SidebarWithHeader>
     </Providers>
   )
 }
