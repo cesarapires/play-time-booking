@@ -104,9 +104,9 @@ describe('SignupForm Form ', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('Error while authentication'),
+        screen.getByText('Erro ao tentar fazer login'),
       ).toBeInTheDocument()
-      expect(screen.getByText('Try again!')).toBeInTheDocument()
+      expect(screen.getByText('Tente novamente!')).toBeInTheDocument()
     })
   })
 })
