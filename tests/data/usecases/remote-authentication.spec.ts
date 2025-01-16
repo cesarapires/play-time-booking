@@ -1,8 +1,8 @@
 import { Authentication } from '@/domain/usecases/authentication'
 import { RemoteAuthentication } from '@/data/usecases/remote-authentication'
-import { mockLoginParams } from '../mocks/login'
+import { mockLoginParams } from '../../domain/mocks/login'
 
-describe('Authentication UseCase', () => {
+describe('RemoteAuthentication UseCase', () => {
 
     let sut: Authentication
 
@@ -10,7 +10,7 @@ describe('Authentication UseCase', () => {
         sut = new RemoteAuthentication()
     })
 
-    test('should call Authentication with correct values', async () => {
+    test('should call RemoteAuthentication with correct values', async () => {
 
         const tokenResult = await sut.auth(mockLoginParams())
 
