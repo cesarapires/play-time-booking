@@ -16,24 +16,15 @@ import {
   CREATE_NEW_COURT_BUTTON_TEXT,
 } from '@/ui/Courts/courts-view.dictionary'
 import { BuildCourtsList } from '@/domain/usecases/build-courts-list'
-import { Courts } from '@/domain/models/court-model'
-import { useEffect, useState } from 'react'
+import { useCourtsList } from '@/ui/Courts/courts-view.hooks'
 
 interface CourtsViewProps {
   buildCourtsList: BuildCourtsList;
 }
 
-export const CourtsView: React.FC<CourtsViewProps> = async ({ buildCourtsList }) => {
+export const CourtsView: React.FC<CourtsViewProps> = ({ buildCourtsList }) => {
 
-  const [courtsList, setCourtsList] = useState<Courts[]>([])
-
-  useEffect(() => {
-    const fetchCourtsList = async () => {
-      const data = await buildCourtsList.get()
-      setCourtsList(data)
-    }
-    fetchCourtsList()
-  }, [buildCourtsList])
+  const { courtsList } = useCourtsList(buildCourtsList)
 
   return (
     <Box bg="gray.100" w="100%" h="100%" p={4} color="white">
@@ -54,7 +45,8 @@ export const CourtsView: React.FC<CourtsViewProps> = async ({ buildCourtsList })
       >
         { courtsList.map((courtsCardInfo, index) => (
           <CourtsCard key={index} {...courtsCardInfo} />
-        ))}
+        ))
+        }
       </SimpleGrid>
     </Box>
   )
