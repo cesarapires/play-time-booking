@@ -1,9 +1,11 @@
-'use-client'
+'use client'
 
-import { BuildCourtsList } from '@/domain/usecases/build-courts-list'
+import { makeBuildCourtsList } from '@/main/factories/domain/usecases/makeBuildCourtsList'
 import { CourtsView } from '@/ui/Courts/Courts.view'
 
-const Courts = (buildCourtsList: BuildCourtsList) => {
+const Courts = () => {
+  const buildCourtsList = makeBuildCourtsList()
+
   return <CourtsView buildCourtsList={buildCourtsList} />
 }
 
